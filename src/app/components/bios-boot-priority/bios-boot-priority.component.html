@@ -1,0 +1,12 @@
+<div>
+  <ion-card>
+    <h3 class="ion-text-center">BIOS boot priority</h3>
+    <ion-list>
+      <ion-item *ngFor="let name of biosComponents">
+        <ion-label>{{ name }}</ion-label>
+        <ion-icon (click)="subirElemento(name)" *ngIf="name !== biosComponents[0]" slot="end" name="arrow-up-outline"></ion-icon>
+        <ion-icon (click)="bajarElemento(name)" *ngIf="name !== biosComponents[biosComponents.length-1]" slot="end" name="arrow-down-outline"></ion-icon>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+</div>

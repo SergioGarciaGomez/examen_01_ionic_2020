@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Usuarios</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="buttons">
+    <ion-button expand="block" (click)="getMan()">
+      <ion-icon name="man"></ion-icon>
+    </ion-button>
+    <ion-button expand="block" (click)="getAll()">TODOS</ion-button>
+    <ion-button expand="block" (click)="getWoman()">
+      <ion-icon name="woman"></ion-icon>
+    </ion-button>
+  </div>
+  <div class="rangoEdad">
+    Entre
+    <input (click)="mostrar()" id="number" type="number" [(ngModel)]="minRange" min="18" max={{maxRange-1}} /> y
+    <input (click)="mostrar()" id="number" type="number" [(ngModel)]="maxRange" min={{minRange+1}} max="100" />
+    años
+  </div>
+  <ion-list *ngFor="let u of usersService.users">
+    <ion-item *ngIf=" (((gender === 1)  && (u.gender==='Male'))||
+                      ((gender === 2)   && (u.gender==='Female'))||
+                      ((gender === 0))) && 
+                      ((u.age >= minRange)    && (u.age <= maxRange))">
+      <ion-avatar slot="start">
+        <img src="../../assets/img/{{u.image}}">
+      </ion-avatar>
+      <div>
+        <p class="name">{{ u.name }}</p>
+        <p class="username">{{ u.username }}</p>
+        <p class="description">Tiene {{ u.age }} años y vive en {{ u.city }}</p>
+      </div>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
